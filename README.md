@@ -1,11 +1,24 @@
 Para poder levantar la aplicación de forma local
 es posible levantarla como tarea bootRun
 
-para iniciar sesión hay que usar el metodo GET  en con la url
-localhost:8080/login?user=admin&password=Admin123
-con esos 2 parametros para obtener el token y usarlo en el header.
+para iniciar sesión hay que usar el metodo POST  en con la url
+localhost:8080/login
+con el siguiente body
+{
+    "name": "admin",
+    "email": "juan@rodriguez.org",
+    "password": "Admin123",
+    "phones": [
+        {
+            "number": "1234567",
+            "citycode": "1",
+            "contrycode": "57"
+        }
+    ]
+}
+el cual retorna el token para poder acceder e insertar datos en bd 
 
-si se quiere agregar un usuario usar la url /user con el método POST
+si se quiere agregar un usuario usar la url localhost:8080/user con el método POST
 usando el token del login como header y con el body 
 
 {

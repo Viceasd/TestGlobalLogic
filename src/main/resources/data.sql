@@ -23,7 +23,7 @@
 --);
 
 insert into userglobal(user_id,name,email,password,creado,modificado,last_login,active,token)
-values(DEFAULT,'admin','jorge@globallogic.cl','Admin123',null,null,null,TRUE,'');
+values(RANDOM_UUID() ,'admin','jorge@globallogic.cl','Admin123',null,null,null,TRUE,'');
 
 INSERT INTO phone (phone_id,number,city_code,country_code)
-VALUES (DEFAULT,'345354','02','56');
+VALUES (RANDOM_UUID() ,'345354','02','56');

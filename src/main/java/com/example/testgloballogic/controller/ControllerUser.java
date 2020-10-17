@@ -90,7 +90,7 @@ public class ControllerUser {
     private UserResponse parseToUserResponse(EntityUser user) {
         UserResponse userResponse = new UserResponse();
         userResponse.setCreated(user.getCreado().toString());
-        userResponse.setId(user.getUserId());
+        userResponse.setId(user.getId());
         userResponse.setIsactive(user.isActive());
         userResponse.setLast_login(user.getLast_login().toString());
         userResponse.setToken(user.getToken());

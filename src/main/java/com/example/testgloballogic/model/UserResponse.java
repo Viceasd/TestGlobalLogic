@@ -1,7 +1,9 @@
 package com.example.testgloballogic.model;
 
+import java.util.UUID;
+
 public class UserResponse {
-    private Long id;
+    private UUID id;
     private String created;
     private String modified;
     private String last_login;
@@ -21,11 +23,11 @@ public class UserResponse {
     }
 
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -18,9 +18,13 @@ public class EntityPhone implements Serializable {
     private EntityUser entityUser;
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="phone_id")
-    private long phoneId;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "phone_id", updatable = false, nullable = false)
+    private UUID id;
     @Column (name="number")
     private String number;
     @Column (name="city_code")
@@ -64,11 +68,7 @@ public class EntityPhone implements Serializable {
         this.countrycode = countrycode;
     }
 
-    public long getPhoneId() {
-        return phoneId;
-    }
-
-    public void setPhoneId(long phoneId) {
-        this.phoneId = phoneId;
+    public UUID getId() {
+        return id;
     }
 }

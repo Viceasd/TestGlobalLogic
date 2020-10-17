@@ -1,7 +1,7 @@
 package com.example.testgloballogic.model;
 
 public class UserResponse {
-    private String id;
+    private Long id;
     private String created;
     private String modified;
     private String last_login;
@@ -20,11 +20,12 @@ public class UserResponse {
                 '}';
     }
 
-    public String getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

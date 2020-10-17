@@ -38,11 +38,12 @@ public class UserRepository {
 
         }
         u.setPhones(entityPhones);
-        entityUserRepository.save(u);
-        return u;
+
+        return entityUserRepository.save(u);
     }
 
     public EntityUser findByName(String nameUser){
+
        return entityUserRepository.findByName(nameUser);
     }
 }

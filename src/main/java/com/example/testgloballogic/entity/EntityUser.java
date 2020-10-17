@@ -1,24 +1,23 @@
 package com.example.testgloballogic.entity;
 
 
-import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.UUID;
+import java.util.Objects;
+
 
 @Entity
-@Table(name="User")
-public class EntityUser implements Serializable{
+@Table(name="userglobal")
+public class EntityUser implements Serializable {
 
+
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="user_id")
+    private long userId;
     @Column(name="name",unique = true)
     private String name;
     @Column(name="email")
@@ -35,6 +34,23 @@ public class EntityUser implements Serializable{
     private boolean active;
     @Column(name="token")
     private String token;
+
+    public EntityUser(long userId, String name, String email, String password, Timestamp creado, Timestamp modificado, Timestamp last_login, boolean active, String token, List<EntityPhone> phones) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.creado = creado;
+        this.modificado = modificado;
+        this.last_login = last_login;
+        this.active = active;
+        this.token = token;
+        this.phones = phones;
+    }
+
+    public EntityUser() {
+
+    }
 
     public boolean isActive() {
         return active;
@@ -79,10 +95,6 @@ public class EntityUser implements Serializable{
         this.token = token;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -115,4 +127,46 @@ public class EntityUser implements Serializable{
         this.phones = phones;
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EntityUser that = (EntityUser) o;
+        return userId == that.userId &&
+                active == that.active &&
+                name.equals(that.name) &&
+                email.equals(that.email) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(creado, that.creado) &&
+                Objects.equals(modificado, that.modificado) &&
+                Objects.equals(last_login, that.last_login) &&
+                Objects.equals(token, that.token) &&
+                phones.equals(that.phones);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, name, email, password, creado, modificado, last_login, active, token, phones);
+    }
+
+    @Override
+    public String toString() {
+        return "EntityUser{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", creado=" + creado +
+                ", modificado=" + modificado +
+                ", last_login=" + last_login +
+                ", active=" + active +
+                ", token='" + token + '\'' +
+                ", phones=" + phones +
+                '}';
+    }
 }

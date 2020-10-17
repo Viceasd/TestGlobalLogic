@@ -4,25 +4,23 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 @Entity
 @Table(name="Phone")
-public class EntityPhone {
+public class EntityPhone implements Serializable {
     @ManyToOne(fetch=FetchType.EAGER)
     @Cascade(value={org.hibernate.annotations.CascadeType.ALL})
     @JoinColumn(name="EntityUser_id")
     private EntityUser entityUser;
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="phone_id")
+    private long phoneId;
     @Column (name="number")
     private String number;
     @Column (name="city_code")
@@ -66,4 +64,11 @@ public class EntityPhone {
         this.countrycode = countrycode;
     }
 
+    public long getPhoneId() {
+        return phoneId;
+    }
+
+    public void setPhoneId(long phoneId) {
+        this.phoneId = phoneId;
+    }
 }
